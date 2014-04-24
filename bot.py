@@ -1,8 +1,12 @@
 import ConfigParser
 import telnetlib
 
-cfg = ConfigParser.ConfigParser()
-cfg.read("infrastructure.ini")
+import config
 
-username = cfg.get_option("game", "username")
-password = cfg.get_option("game", )
+telnet = telnetlib.Telnet(config.address, config.port)
+telnet.read_very_eager() # dump loading screen
+telnet.write("connect %s %s\n" % (config.username, config.password))
+
+def send():
+    pass
+
